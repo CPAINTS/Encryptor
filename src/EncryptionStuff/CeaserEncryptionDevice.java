@@ -1,25 +1,37 @@
 package EncryptionStuff;
 
-public class CeaserEncryptionDevice {
-	private String message;
-	//our class level string variable used to store the message to encrypt
-	private int cypherKey;
-	//our class level int variable for the ceaser cypher key
+
+public class CeaserEncryptionDevice extends Encryptor {
+	
 	public CeaserEncryptionDevice() {
 		this.message = null;
 		this.cypherKey = 0;
 		//setting our local variables to null and zero upon instantiating an object of the class
 	}
 	
-	public void messageToEncrpyt(String s) {
-		if(s.isEmpty() || s == null)
-			throw new IllegalArgumentException("messageToEncryp paramter cannot be null or empty");
-		this.message = s;
+
+	
+	public void decrypt() {
+		
 	}
 	
-	public void setKey(int k) {
-		if(k == 0)
-			throw new IllegalArgumentException("Key for ceaser set key cannot be zero or null");
-		this.cypherKey = k;
+	public void encrypt() {
+	
+		encryptedMessage = new int[message.length()];
+		
+		encryptedMessage = encryptAlphabet(message);
+		
+		for(int i = 0; i < encryptedMessage.length; i++) {
+			encryptedMessage[i] += this.cypherKey;
+			if(encryptedMessage[i] > 26)
+				encryptedMessage[i] %= 26;
+		}
+		
+		this.message = numbersToLetters(encryptedMessage);
+	}
+	
+	
+	public String toString() {
+		return "Using the Ceaser Cypher, " + super.toString();
 	}
 }//end class
