@@ -1,5 +1,5 @@
 import EncryptionStuff.*;
-
+import java.util.Scanner;
 public class EncryptorTester {
 
 	public static void main(String[] args) {
