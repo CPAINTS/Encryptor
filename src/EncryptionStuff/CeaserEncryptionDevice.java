@@ -12,7 +12,16 @@ public class CeaserEncryptionDevice extends Encryptor {
 
 	
 	public void decrypt() {
+		encryptedMessage = new int[message.length()];
+		encryptedMessage = encryptAlphabet(message);
 		
+		for(int i = 0; i < encryptedMessage.length; i++) {
+			encryptedMessage[i] -= this.cypherKey;
+			if(encryptedMessage[i] < 1)
+				encryptedMessage[i] += 26;
+		}
+		
+		this.message = numbersToLetters(encryptedMessage);
 	}
 	
 	public void encrypt() {

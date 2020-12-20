@@ -1,4 +1,6 @@
 package EncryptionStuff;
+import java.util.*;
+
 
 public abstract class Encryptor {
 	protected String message;
@@ -7,6 +9,27 @@ public abstract class Encryptor {
 	//our class level int variable for the ceaser cypher key
 	protected int[] encryptedMessage;
 	
+	private final HashMap<Integer,Character> lookupMapChar = new HashMap<Integer,Character>() {
+		
+		{	int i = 1;
+			for (char ch = 'a'; ch <= 'z'; ch++) {
+				put(i,ch);
+				i++;
+			}
+		}
+		
+	};
+	
+	private final HashMap<Character,Integer> lookupMapNum = new HashMap<Character,Integer>() {
+		
+		{	int i = 1;
+			for (char ch = 'a'; ch <= 'z'; ch++) {
+				put(ch,i);
+				i++;
+			}
+		}
+		
+	};
 		public abstract void encrypt();
 		
 		public abstract void decrypt();
@@ -20,14 +43,17 @@ public abstract class Encryptor {
 			
 		}
 		
+		
+		
 		public String numbersToLetters(int[] array) {
 				if(array == null || array.length == 0)
 					throw new IllegalArgumentException("Bad parameters in numbersToLetters");
 				String message = "";
-				
+			
 				for(int i = 0; i < array.length; i++) {
+					message += lookupMapChar.get(array[i]);
 				
-				switch(array[i]) {
+				/*	switch(array[i]) {
 				case 1: message += "a"; break;
 				case 2: message += "b"; break;
 				case 3: message += "c"; break;
@@ -53,13 +79,15 @@ public abstract class Encryptor {
 				case 23: message += "w"; break;
 				case 24: message += "x"; break;
 				case 25: message += "y"; break;
-				case 26: message += "z"; break;
+				case 26: message += "z"; break;  
+					
+				
 				
 				/*Just doing this for now still thinking of the best way to implement 
 				 * a two way hash map if possible to look up the values of %26 alphabet
 				 */
 				
-				}//end switch 
+					
 				
 				}//end for
 				return message;
@@ -74,8 +102,9 @@ public abstract class Encryptor {
 			
 			while(i != message.length()) {
 				char c = message.charAt(i);
-				
-				switch(c) {
+				array[i] = lookupMapNum.get(c);
+				i++;
+			/*	switch(c) {
 				case 'a': array[i] = 1; break;
 				case 'b': array[i] = 2; break;
 				case 'c': array[i] = 3; break;
@@ -101,14 +130,13 @@ public abstract class Encryptor {
 				case 'w': array[i] = 23; break;
 				case 'x': array[i] = 24; break;
 				case 'y': array[i] = 25; break;
-				case 'z': array[i] = 26; break;
+				case 'z': array[i] = 26; break; */
 				
 				/*Just doing this for now still thinking of the best way to implement 
 				 * a two way hash map if possible to look up the values of %26 alphabet
 				 */
 				
-				}//end switch 
-				i++;
+				
 			}
 			return array;
 			
@@ -118,6 +146,7 @@ public abstract class Encryptor {
 		public String toString() {
 			return " Your message is: " + this.message + ", and your key is: " + this.cypherKey;
 		}
+		
 			
 		
 }//end class

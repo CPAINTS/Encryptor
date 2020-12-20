@@ -16,6 +16,9 @@ public class EncryptorTester {
 		encryptor.setKeyandMessage(Integer.parseInt(kb.nextLine()), kb.nextLine());
 		encryptor.encrypt();
 		System.out.println("Displaying the encrypted message\n" + encryptor.toString());
+		encryptor.decrypt();
+		System.out.println("Displaying the decrypted message\n" + encryptor.toString());
+		
 		
 	}//end main
 	
