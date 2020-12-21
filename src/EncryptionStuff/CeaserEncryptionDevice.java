@@ -3,15 +3,8 @@ package EncryptionStuff;
 
 public class CeaserEncryptionDevice extends Encryptor {
 	
-	public CeaserEncryptionDevice() {
-		this.message = null;
-		this.cypherKey = 0;
-		//setting our local variables to null and zero upon instantiating an object of the class
-	}
-	
-
-	
 	public void decrypt() {
+		super.setKeyandMessage();
 		encryptedMessage = new int[message.length()];
 		encryptedMessage = encryptAlphabet(message);
 		
@@ -22,10 +15,11 @@ public class CeaserEncryptionDevice extends Encryptor {
 		}
 		
 		this.message = numbersToLetters(encryptedMessage);
+		System.out.println(toString());
 	}
 	
 	public void encrypt() {
-	
+		super.setKeyandMessage();
 		encryptedMessage = new int[message.length()];
 		
 		encryptedMessage = encryptAlphabet(message);
@@ -37,6 +31,7 @@ public class CeaserEncryptionDevice extends Encryptor {
 		}
 		
 		this.message = numbersToLetters(encryptedMessage);
+		System.out.println(toString());
 	}
 	
 	

@@ -1,7 +1,8 @@
 import EncryptionStuff.*;
 import java.util.Scanner;
 public class EncryptorTester {
-
+	public static Scanner kb = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		/*We are going to start building this encryptor by
 		 * using a simple ceaser shift cypher having an input
@@ -9,21 +10,29 @@ public class EncryptorTester {
 		 * You will not only be able to encrypt your messages 
 		 * but also decrypt your messages given a specific key
 		 */
-		Scanner kb = new Scanner(System.in);
 		Encryptor encryptor = null;
-		encryptor = chooseMenu(encryptor, kb);
-		System.out.println("Please enter your encryption key followed by the message you'd like to encrypt");
-		encryptor.setKeyandMessage(Integer.parseInt(kb.nextLine()), kb.nextLine());
-		encryptor.encrypt();
-		System.out.println("Displaying the encrypted message\n" + encryptor.toString());
-		encryptor.decrypt();
-		System.out.println("Displaying the decrypted message\n" + encryptor.toString());
-		
-		
+		encryptor = chooseEncryptor(encryptor);
+		chooseMenu(encryptor);
+		System.exit(0);
 	}//end main
 	
-	public static Encryptor chooseMenu(Encryptor e, final Scanner kb) {
-		System.out.println("Choose a menu option:\n0 = Ceaser Cypher\n1 = null\n2 = null");
+	public static void chooseMenu(Encryptor e) {
+		if(e == null)
+			throw new IllegalArgumentException("Encrpytion device cannot be null to choose a menu option!");
+		int option = 0;
+		while(option != 5) {
+		System.out.println("What would you like to do?\n1 = Encrpyt Message\n2 = Decrypt Message\n5 = exit");
+		option = Integer.parseInt(kb.nextLine());
+		switch(option) {
+		case 1: e.encrypt(); break;
+		case 2: e.decrypt(); break;
+		}
+		
+	  }
+	}
+	
+	public static Encryptor chooseEncryptor(Encryptor e) {
+		System.out.println("Choose a menu option:\n0 = Ceaser Cypher\n1 = null\n2 = null\ne = exit");
 		int menuOption = Integer.parseInt(kb.nextLine());
 		
 		switch(menuOption) {
