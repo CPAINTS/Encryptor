@@ -37,7 +37,7 @@ public class EncryptorTester {
 		
 		switch(menuOption) {
 		case 0: e = new CeaserEncryptionDevice(); break;
-		//case 1: for other types of encryption
+		case 1: e = new VectorEncryption(); break;
 		//case 2: for other types of encryption
 		//case 3: for other types of encryption 
 		}

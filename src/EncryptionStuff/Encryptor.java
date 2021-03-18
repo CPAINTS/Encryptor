@@ -9,6 +9,9 @@ public abstract class Encryptor {
 	//our class level int variable for the ceaser cypher key
 	protected int[] encryptedMessage;
 	
+	//class level int 2D for vector/matrix encrpytions
+	protected int[][] VMencrypted;
+	
 	protected Scanner kb = new Scanner(System.in);
 	
 	private final HashMap<Integer,Character> lookupMapChar = new HashMap<Integer,Character>() {
